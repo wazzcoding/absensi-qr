@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: absensi-qr-app
+    env: php
+    plan: free
+    buildCommand: composer install --no-dev && npm install && npm run build
+    startCommand: apache2-foreground
+    envVars:
+      - key: APP_KEY
+        generateValue: true
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: absensi-db
+          property: connectionString
+
+databases:
+  - name: absensi-db
+    plan: free

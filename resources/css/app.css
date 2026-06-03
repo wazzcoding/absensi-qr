@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    @keyframes revealUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+  
+    .animate-reveal {
+      animation: revealUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+  
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+  }
+  @layer components {
+    .typing-wrapper {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .typing-effect {
+      display: inline-block;
+      overflow: hidden;
+      border-right: 4px solid #10b981; /* Kursor Emerald tebal */
+      width: 0;
+      /* Angka 7ch itu karena kata "TANGBAR" ada 7 huruf */
+      animation: 
+        ngetik 2s steps(7) 1.5s forwards, 
+        kedip 0.8s step-end infinite;
+    }
+  
+    @keyframes ngetik {
+      from { width: 0; }
+      to { width: 7ch; } /* Mengunci lebar tepat di 7 karakter */
+    }
+  
+    @keyframes kedip {
+      50% { border-color: transparent; }
+    }
+  }
+  #typing-text {
+    animation: blink-cursor 0.7s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    50% { border-color: transparent; }
+}
